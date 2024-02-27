@@ -14,3 +14,5 @@ class HomeController extends Controller
         return $this->view('welcome',["name" => "Cogip"]);
     }
 }
+
+//test
