@@ -18,6 +18,9 @@ $companies = $companie->getAllCompanies();
     <body>
         <main>
             <h1>All companies</h1>
+            <form method="GET" action="">
+                <input type="text" name="search" placeholder="Search company name">
+            </form>
             <table>
                 <tr>
                     <th>Name</th>
@@ -30,24 +33,32 @@ $companies = $companie->getAllCompanies();
                 if(isset($_GET['nbr'])){
                     $cpt = $_GET['nbr'];
                     $page = $_GET['nbr'];
-                }
-                else{
+                } else {
                     $cpt = 0; 
                     $page = 0;
                 }
-                $limit = $cpt+10;
+                $limit = $cpt + 10;
                 $limit_tab = count($companies);
-                while ($cpt < $limit && $cpt < $limit_tab) {
+
+                $filteredCompanies = $companies;
+                if(isset($_GET['search']) && !empty($_GET['search'])) {
+                    $searchTerm = $_GET['search'];
+                    $filteredCompanies = array_filter($companies, function($company) use ($searchTerm) {
+                        return stripos($company['name'], $searchTerm) !== false;
+                    });
+                    $limit_tab = count($filteredCompanies); 
+                }
+
+                foreach(array_slice($filteredCompanies, $cpt, 10) as $company) {
                 ?>
                     <tr>
-                        <td><a href="company_details.php?id=<?php echo $companies[$cpt]['id']; ?>"><?php echo $companies[$cpt]['name']; ?></a></td>
-                        <td><?php echo $companies[$cpt]['tva']; ?></td>
-                        <td><?php echo $companies[$cpt]['country']; ?></td>
-                        <td><?php echo $companies[$cpt]['type_name']; ?></td>
-                        <td><?php echo substr($companies[$cpt]['created_at'], 0, 10); ?></td>
+                        <td><a href="company_details.php?id=<?php echo $company['id']; ?>"><?php echo $company['name']; ?></a></td>
+                        <td><?php echo $company['tva']; ?></td>
+                        <td><?php echo $company['country']; ?></td>
+                        <td><?php echo $company['type_name']; ?></td>
+                        <td><?php echo substr($company['created_at'], 0, 10); ?></td>
                     </tr>
                 <?php
-                $cpt++; 
                 }
                 ?>
             </table>
