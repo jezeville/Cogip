@@ -7,8 +7,8 @@ $password = '';
 
 
 try {
-    $bdd = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-    $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $db = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
     echo "erreur : " . $e->getMessage();
 }
