@@ -57,39 +57,41 @@ if(isset($_POST['inputInvoices'])){
     </tr>
 
 
-    $rowColor = $rowColor === "bg-gray-100" ? "bg-gray-300" : "bg-gray-100";
-<tr class='$rowColor hover:bg-blue-200'>
-
-
-    <?php  while ($row = $result->fetch(PDO::FETCH_ASSOC)) : ?>
-                        <tr class="h-11">
-                            <td class="text-left pl-8 w-1/6 "><?php echo $row['ref']; ?></td>
-                            <td class="text-left pl-8 w-1/6"><?php echo $row['due_date']?></td>
-                            <td class="text-left pl-8 w-1/4"><?php echo $row['company_name']?></td>
-                            <td class="text-left pl-8"><?php echo $row['created_date']?></td>
-                        </tr>
-                    <?php endwhile; ?> 
-        </table>    
     <?php
-   
+        $rowColor = "bg-gray-200";
+        while ($row = $result->fetch(PDO::FETCH_ASSOC)) :
+            $rowColor = $rowColor === "bg-gray-200" ? "bg-white" : "bg-gray-200";
+        ?>
+            <tr class="<?php echo $rowColor; ?> hover:bg-blue-200 h-11">
+            
+
+                <td class="text-left pl-8 w-1/6 font-bold">
+                    <a href="contact_detailPage.php?id=<?php echo $row['ref']; ?>"><?php echo $row['ref']; ?></a></td>
+                <td class="text-left pl-8 w-1/6 font-bold"><?php echo $row['due_date']?></td>
+                <td class="text-left pl-8 w-1/4 font-bold"><?php echo $row['company_name']?></td>
+                <td class="text-left pl-8 font-bold"><?php echo $row['created_date']?></td>
+            </tr>
+        <?php endwhile; ?> 
+        </table>
+   <?php
  // pagination comptage
  $totalRecords = $invoicesDisplay->getInvoicesCount();
  $totalPages = ceil($totalRecords / $maxPage);
 
- echo "<div>";
+ echo '<div class="flex justify-center my-14 ">';
 
  // pagination précédent
  if ($currentPage > 1) {
      $previousPage = $currentPage - 1;
-     echo "<a href='invoicePage.php?page=$previousPage'><</a> ";
- }
+     echo "<a href='invoicePage.php?page=$previousPage' class='border-gray-400 border-2 h-6 w-6 flex items-center justify-center mr-1'><</a>";
+    }
  
  // paginaton ellipse
  $ellipsis = false;
 
  for ($i = 1; $i <= $totalPages; $i++) {
      if ($i == 1 || $i == $totalPages || abs($i - $currentPage) <= 2) {
-         echo "<a href='invoicePage.php?page=$i'>$i</a> ";
+         echo "<a href='invoicePage.php?page=$i' class='border-gray-400 border-2 h-6 w-6 flex items-center justify-center mx-1'>$i</a> ";
          $ellipsis = false;
      } elseif (!$ellipsis) {
          echo "... ";
@@ -100,7 +102,7 @@ if(isset($_POST['inputInvoices'])){
  // pagination suivant
  if ($currentPage < $totalPages) {
      $nextPage = $currentPage + 1;
-     echo "<a href='invoicePage.php?page=$nextPage'>></a>";
+     echo "<a href='invoicePage.php?page=$nextPage' class='border-gray-400 border-2 h-6 w-6 flex items-center justify-center ml-1'>></a>";
  }
 
  echo "</div>";
