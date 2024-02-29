@@ -71,7 +71,7 @@ if(isset($_POST['inputCompany'])){
                     <td class="text-left pl-8 w-1/6 font-bold"><?php echo $row['tva']?></td>
                     <td class="text-left pl-8 w-1/6 font-bold"><?php echo $row['country']?></td>
                 <td class="text-left pl-8 w-1/6 font-bold"><?php echo $row['type_name']?></td>
-                <td class="text-left pl-8 font-bold"><?php echo $row['created_at']?></td>
+                <td class="text-left pl-8 font-bold"><?php echo str_replace('-', '/', substr($row['created_at'], 0, 10)); ?></td>
             </tr>
         <?php endwhile; ?> 
         </table>

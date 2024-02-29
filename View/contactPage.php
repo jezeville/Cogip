@@ -71,7 +71,7 @@ if(isset($_POST['inputContact'])){
                 <td class="text-left pl-8 w-1/6 font-bold"><?php echo $row['phone']?></td>
                 <td class="text-left pl-8 w-1/4 font-bold"><?php echo $row['email']?></td>
                 <td class="text-left pl-8 font-bold"><?php echo $row['company_name']?></td>
-                <td class="text-left pl-8 font-bold"><?php echo $row['created_at']?></td>
+                <td class="text-left pl-8 font-bold"><?php echo str_replace('-', '/', substr($row['created_at'], 0, 10)); ?></td>
             </tr>
         <?php endwhile; ?> 
         </table>
