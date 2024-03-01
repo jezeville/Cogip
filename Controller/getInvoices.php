@@ -1,8 +1,8 @@
 <?php
+require('../Model/connection.php'); ?>
 
-require('../Model/connection.php');
 
-
+<?php
 class Invoices
 {
     private $db;
@@ -55,5 +55,29 @@ class Invoices
         $stmt->execute();
 
         return $stmt;
+    }
+
+    public function createInvoice($db)
+    {
+        if (isset($_POST['reference']) && isset($_POST['company_name'])) {
+
+            $reference = $_POST['reference'];
+            $companyName = $_POST['company_name'];
+
+            $insertQuery = "INSERT INTO cogip (ref, name) VALUES (:reference, :company_name)";
+
+            $re = $db->prepare($insertQuery);
+            $re->bindValue(':reference', $reference, PDO::PARAM_STR);
+            $re->bindValue(':company_name', $companyName, PDO::PARAM_STR);
+
+            if ($re->execute()) {
+                header("location: ../View/dashboard.php");
+                exit();
+            } else {
+                echo "Erreur lors de l'exécution de la requête";
+            }
+        } else {
+            echo "Données POST manquantes";
+        }
     }
 }
