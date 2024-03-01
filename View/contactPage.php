@@ -67,7 +67,7 @@ if(isset($_POST['inputContact'])){
             
 
                 <td class="text-left pl-8 w-1/6 font-bold">
-                    <a href="contact_detailPage.php?id=<?php echo $row['name']; ?>"><?php echo $row['name']; ?></a></td>
+                    <a href="contactDetailPage.php?id=<?php echo $row['id']?>"><?php echo $row['name']; ?></a></td>
                 <td class="text-left pl-8 w-1/6 font-bold"><?php echo $row['phone']?></td>
                 <td class="text-left pl-8 w-1/4 font-bold"><?php echo $row['email']?></td>
                 <td class="text-left pl-8 font-bold"><?php echo $row['company_name']?></td>

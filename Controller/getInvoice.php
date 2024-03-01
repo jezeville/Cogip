@@ -23,7 +23,7 @@ class Invoices
     // Méthode pour récupérer les données des factures de manière paginée
     public function getInvoicesPagination($maxPage, $offset)
     {
-        $sql = "SELECT invoices.ref, DATE(invoices.created_at) as created_date, DATE(invoices.updated_at) as updated_date, DATE(invoices.due_date) as due_date, companies.name AS company_name 
+        $sql = "SELECT invoices.ref, DATE(invoices.created_at) as created_date, DATE(invoices.updated_at) as updated_date, DATE(invoices.due_date) as due_date, companies.name AS company_name, companies.id AS company_id
         FROM invoices
         JOIN companies ON invoices.id_company = companies.id
         JOIN types ON companies.type_id = types.id

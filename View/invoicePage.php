@@ -66,7 +66,7 @@ if(isset($_POST['inputInvoices'])){
             
 
                 <td class="text-left pl-8 w-1/6 font-bold">
-                    <a href="contact_detailPage.php?id=<?php echo $row['ref']; ?>"><?php echo $row['ref']; ?></a></td>
+                    <a href="companyDetailPage.php?id=<?php echo $row['company_id']; ?>"><?php echo $row['ref']; ?></a></td>
                 <td class="text-left pl-8 w-1/6 font-bold"><?php echo $row['due_date']?></td>
                 <td class="text-left pl-8 w-1/4 font-bold"><?php echo $row['company_name']?></td>
                 <td class="text-left pl-8 font-bold"><?php echo $row['created_date']?></td>
