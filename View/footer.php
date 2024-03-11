@@ -12,7 +12,7 @@
 
         <div class="flex p-12">
             <div class="flex flex-col w-full items-center">
-                <div class="flex justify-center w-4/5 py-14 bg-white border-t-2 border-[#F9DE4E]">
+                <div class="flex justify-center w-4/5 py-14 bg-white border-t-2 border-yellow-300">
                     <div class="flex items-center w-[95%]"> <!-- div conteneur de tout -->
                         <div class="w-1/2"> <!-- div cogip -->
                             <h2 class="text-5xl p-1 font-bold text-[#434138]">COGIP</h2>
