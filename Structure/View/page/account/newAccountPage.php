@@ -1,5 +1,6 @@
-<?php
-require ('../Controller/account.php');
+
+<?php 
+    require '../../../Controller/getAccount.php';
 
 $authen = new Account($db);
 $authen->processRegistration();
