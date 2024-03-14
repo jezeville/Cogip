@@ -78,16 +78,23 @@ class Invoices extends management
 
     public function createInvoice($ref, $price, $name)
     {
-        $sqlInvoice = "INSERT INTO invoices (ref, price) VALUES (:ref, :price)";
+
+
+        $createdAt = date('Y-m-d H:i:s');
+        $dueDate = date('Y-m-d', strtotime('+30 days'));
+
+        $sqlInvoice = "INSERT INTO invoices (ref, price, created_at, due_date) VALUES (:ref, :price, :created_at, :due_date)";
         $stmtInvoice = $this->db->prepare($sqlInvoice);
         $stmtInvoice->bindParam(':ref', $ref, PDO::PARAM_STR);
         $stmtInvoice->bindParam(':price', $price);
+        $stmtInvoice->bindParam(':created_at', $createdAt);
+        $stmtInvoice->bindParam(':due_date', $dueDate);
 
         $sqlCompanies = "INSERT INTO companies (name) VALUES (:name)";
         $stmtCompanies = $this->db->prepare($sqlCompanies);
         $stmtCompanies->bindParam(':name', $name);
-    
-        $this->db->beginTransaction(); // fonction native qui signifie : si une requete échoue, toutes les requetes échouent.
+
+        $this->db->beginTransaction();
         try {
             $stmtInvoice->execute();
             $stmtCompanies->execute();
@@ -113,6 +120,30 @@ class Company extends management
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public function createCompany($name, $country, $tva)
+    {
+
+
+        $createdAt = date('Y-m-d H:i:s');
+
+        $sqlCompany = "INSERT INTO companies (name, country, tva, created_at) VALUES (:name, :country, :tva, :created_at)";
+        $stmtCompany = $this->db->prepare($sqlCompany);
+        $stmtCompany->bindParam(':name', $name, PDO::PARAM_STR);
+        $stmtCompany->bindParam(':country', $country);
+        $stmtCompany->bindParam(':tva', $tva);
+        $stmtCompany->bindParam(':created_at', $createdAt);
+
+        $this->db->beginTransaction();
+        try {
+            $stmtCompany->execute();
+            $this->db->commit();
+            header("location: ../view/dashboard.php");
+        } catch (Exception $e) {
+            $this->db->rollBack();
+            echo "Erreur : " . $e->getMessage();
+        }
+    }
 }
 
 class Contact extends management
@@ -128,5 +159,29 @@ class Contact extends management
         $stmt->execute();
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function createContact($name, $email, $phone)
+    {
+
+
+        $createdAt = date('Y-m-d H:i:s');
+
+        $sqlContact = "INSERT INTO contacts (name, email, phone, created_at) VALUES (:name, :email, :phone, :created_at)";
+        $stmtContact = $this->db->prepare($sqlContact);
+        $stmtContact->bindParam(':name', $name, PDO::PARAM_STR);
+        $stmtContact->bindParam(':email', $email);
+        $stmtContact->bindParam(':phone', $phone);
+        $stmtContact->bindParam(':created_at', $createdAt);
+
+        $this->db->beginTransaction();
+        try {
+            $stmtContact->execute();
+            $this->db->commit();
+            header("location: ../view/dashboard.php");
+        } catch (Exception $e) {
+            $this->db->rollBack();
+            echo "Erreur : " . $e->getMessage();
+        }
     }
 }
