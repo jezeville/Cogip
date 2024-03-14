@@ -18,10 +18,9 @@ require('../Model/connection.php');
         {
             {
                 if(isset($_POST["valider"])) {
-                    // Ajoutez des instructions de débogage ici
                     echo "Form submitted successfully.";
-                    var_dump($_POST); // Afficher les données du formulaire
-                    // Continuez avec le reste de votre logique
+                    var_dump($_POST);
+                    
                 }
                 // Récupérer les données du formulaire
                 $registration_first_name = isset($_POST["registration_first_name"]) ? $_POST["registration_first_name"] : "";
