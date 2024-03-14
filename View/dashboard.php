@@ -11,11 +11,47 @@
 
 <body>
 
-<!-- factures -->
+    <!-- factures -->
 
-<?php
+    <?php
     $invoices = (new Invoices($db))->getInvoicesDashboard();
+
+    if (isset($_POST['delete_invoices'])) {
+        $deleteInvoices = (new Invoices($db))->deleteFunction('invoices', $_POST['delete_invoices']);
+    }
+
+    if (isset($_POST['save_button'])) {
+        echo "Save button clicked!";
+
+        // Utilisez l'ID envoyé depuis la requête AJAX
+        $id = isset($_POST['id']) ? $_POST['id'] : null;
+
+        if ($id !== null && isset($_POST['ref']) && isset($_POST['created_at']) && isset($_POST['company_name'])) {
+            $value1 = $_POST['ref'];
+            $value2 = $_POST['created_at'];
+            $value3 = $_POST['company_name'];
+
+            echo "ID: $id, Value1: $value1, Value2: $value2, Value3: $value3";
+
+            $update = (new management($db))->updateFunction([$value1, $value2, $value3,], $id);
+
+            try {
+                if ($update) {
+                    echo "Mise à jour réussie côté client.";
+                } else {
+                    echo "Erreur lors de la mise à jour côté client.";
+                }
+            } catch (PDOException $e) {
+                echo "Erreur SQL : " . $e->getMessage();
+            }
+        }
+    }
+
+
+
     ?>
+
+    <!-- Invoices -->
     <div>
         <h2>Last invoices</h2>
         <table border='1'>
@@ -23,38 +59,53 @@
                 <th>Invoice number</th>
                 <th>Date</th>
                 <th>Company</th>
-                <th>Action</th>
+                <th>Delete</th>
+                <th>Update</th>
+                <th>Save</th>
             </tr>
+
             <?php foreach ($invoices as $row) : ?>
-                <tr class="edit-mode" id="invoice_<?php echo $row['id']; ?>">
+                <tr>
+                    <td><a href='edit_invoices.php?ref=<?php echo $row['ref']; ?>'><?php echo $row['ref']; ?></a></td>
+
                     <td>
-                        <a href="#" onclick="toggleEdit('invoice_<?php echo $row['id']; ?>', 'ref', <?php echo $row['id']; ?>)">
-                            <span class="editable" data-field="ref"><?php echo $row['ref']; ?></span>
-                        </a>
+                        <?php echo $row['created_date']; ?>
                     </td>
                     <td>
-                        <a href="#" onclick="toggleEdit('invoice_<?php echo $row['id']; ?>', 'created_date', <?php echo $row['id']; ?>)">
-                            <span class="editable" data-field="created_date"><?php echo $row['created_date']; ?></span>
-                        </a>
+                        <?php echo $row['company_name']; ?>
                     </td>
-                    <td>
-                        <a href="#" onclick="toggleEdit('invoice_<?php echo $row['id']; ?>', 'company_name', <?php echo $row['id']; ?>)">
-                            <span class="editable" data-field="company_name"><?php echo $row['company_name']; ?></span>
-                        </a>
-                    </td>
+
+
                     <td>
                         <form method="POST" action="dashboard.php">
-                            <input type="hidden" name="delete_invoice" value="<?php echo $row['id']; ?>">
+                            <input type="hidden" name="delete_invoices" value="<?php echo $row['id']; ?>">
                             <button type="submit" name="delete_button">Delete</button>
                         </form>
                     </td>
+
+
+                    <td>
+                        <button class="updateButton" onclick="enableEditing(this, '<?php echo $row['ref']; ?>')">Update</button>
+                    </td>
+
+
+
+                    <td>
+                        <button class="saveButton" onclick="saveChanges(this)" style="display:none;" data-id="<?php echo $row['id']; ?>" data-ref="<?php echo $row['ref']; ?>" data-created_at="<?php echo $row['created_date']; ?>" data-company_name="<?php echo $row['company_name']; ?>">Save</button>
+
+
+                    </td>
+
+
                 </tr>
             <?php endforeach; ?>
         </table>
     </div>
 
+
+
     <!-- company -->
-<?php
+    <?php
     $company = (new Company($db))->getCompanyDashboard();
     if (isset($_POST['delete_company'])) {
         $deleteCompany = (new Company($db))->deleteFunction('companies', $_POST['delete_company']);
@@ -79,13 +130,16 @@
                             <button type="submit" name="delete_button">Delete</button>
                         </form>
                     </td>
+                    <td>
+                        <button class="updateButton" onclick="update(this, <?php echo $row['id']; ?>)" value="<?php echo $row['id']; ?>">Update</button>
+                    </td>
                 </tr>
             <?php endforeach; ?>
         </table>
     </div>
 
     <!-- contact -->
-<?php
+    <?php
     $contact = (new Contact($db))->getContactDashboard();
     if (isset($_POST['delete_contact'])) {
         $deleteContact = (new Contact($db))->deleteFunction('contacts', $_POST['delete_contact']);
@@ -110,11 +164,19 @@
                             <button type="submit" name="delete_button">Delete</button>
                         </form>
                     </td>
+                    <td>
+                        <button class="updateButton" onclick="update(this, <?php echo $row['id']; ?>)" value="<?php echo $row['id']; ?>">Update</button>
+                    </td>
                 </tr>
             <?php endforeach; ?>
         </table>
     </div>
-    
+
+
+    <script src="src/invoicesUpdate.js"></script>
+    <script src="src/companyUpdate.js"></script>
+    <script src="src/contactsUpdate.js"></script>
+
 </body>
 
 
