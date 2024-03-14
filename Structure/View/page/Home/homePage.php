@@ -1,17 +1,9 @@
 
-<!-- Regarder à modifier  -->
-    <?php
-        require('../Controller/home.php');
 
-        $home = new Home($db);
-        $limit = 5;
-        $latestInvoices = $home->getLatestInvoices($limit);
-        $latestContacts = $home->getLatestContact($limit);
-        $latestCompanies = $home->getLatestCompanies($limit);
+    <?php 
+    require '../../../Controller/getHome.php';
+    require '../../element/headerHome.php' ; 
     ?>
-<!-- ------------------  -->
-
-    <?php require '../../element/headerHome.php' ; ?>
     <main class="items-center m-auto w-4/5">
         <section>
             <div class="relative mt-14">
@@ -93,11 +85,6 @@
                 <?php endforeach; ?>
             </table>
         </section>
-
-        <div class="mt-10">
-    <p><a href="company.php" class="block text-lg font-bold text-gray-600 hover:underline">Go to the providers page</a></p>
-    <p><a href="contact.php" class="block text-lg font-bold text-gray-600 hover:underline">Go to the clients page</a></p>
-</div>
     </main>
     <div class="flex justify-around items-center">
     <!-- Text on the left -->

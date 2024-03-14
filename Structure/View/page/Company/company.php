@@ -1,9 +1,5 @@
 
-
-
-
     <?php 
-    echo 'test';
     require '../../../Controller/getCompany.php';
     require '../../element/header.php' ; 
 
@@ -58,12 +54,12 @@
         $totalPages = ceil($totalRecords / $maxPage);
 
         ?>
-            <div class="flex justify-center my-14 ">';
+            <div class="flex justify-center my-14 ">
         <?php
         // pagination précédent
         if ($currentPage > 1) {
             $previousPage = $currentPage - 1;
-            echo "<a href='company.php?page=$previousPage' class='border-gray-400 border-2 h-6 w-6 flex items-center justify-center mr-1'><</a>";
+            echo "<a href='company.php?page=$previousPage' class='border-gray-400 border-2 h-6 w-6 flex items-center justify-center mr-1'> < </a>";
             }
         
         // paginaton ellipse

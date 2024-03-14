@@ -1,26 +1,7 @@
 
-<!-- Regarder à modifier  -->
-<?php
-require('../Controller/getContact.php');
-
-$ContactDisplay = new Contact($db);
-
-// pagination paramétrage
-$maxPage = 10;
-$defaultPage = 1;
-$currentPage = isset($_GET['page']) ? intval($_GET['page']) : $defaultPage;
-$offset = ($currentPage - 1) * $maxPage;
-
-// formulaire
-if(isset($_POST['inputContact'])){
-    $searchValue = trim($_POST['inputContact']);
-    $result = $ContactDisplay->searchContact($searchValue);
-} else {
-    $result = $ContactDisplay->getContactPagination($maxPage, $offset);
-}
-?>
-<!-- ------------------  -->
-    <?php require '../../element/header.php' ; ?>
+    <?php 
+    require '../../../Controller/getContact.php';
+    require '../../element/header.php' ; ?>
 
     <main>
         <div class="items-center m-auto w-4/5">
@@ -57,7 +38,7 @@ if(isset($_POST['inputContact'])){
                     
 
                         <td class="text-left pl-8 w-1/6 font-bold">
-                            <a href="contactDetailPage.php?id=<?php echo $row['id']?>"><?php echo $row['name']; ?></a></td>
+                            <a href="contactDetail.php?id=<?php echo $row['id']?>"><?php echo $row['name']; ?></a></td>
                         <td class="text-left pl-8 w-1/6 font-bold"><?php echo $row['phone']?></td>
                         <td class="text-left pl-8 w-1/4 font-bold"><?php echo $row['email']?></td>
                         <td class="text-left pl-8 font-bold"><?php echo $row['company_name']?></td>

@@ -1,5 +1,5 @@
 <?php
-require '../Core/connection.php' ;
+require '../../../Core/connection.php';
 
 
 class Contact
@@ -50,6 +50,31 @@ class Contact
         $stmt->execute();
 
         return $stmt;
+    }
+
+    public function searchContactByID($searchValue)
+    {
+        $searchValue = '%' . $searchValue . '%';
+        $sql = "SELECT contacts.*, companies.name AS company_name
+        FROM contacts INNER JOIN companies ON contacts.company_id = companies.id 
+        WHERE companies.id LIKE :searchValue
+        ORDER BY contacts.name ASC";
+
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindParam(':searchValue', $searchValue, PDO::PARAM_STR);
+        $stmt->execute();
+
+        return $stmt;
+    }
+
+    public function getLatestContact($limit) {
+        $sql = "SELECT contacts.name, contacts.phone, contacts.email, companies.name AS company_name, DATE(contacts.created_at) as created_at 
+        FROM contacts 
+        JOIN companies ON contacts.company_id = companies.id
+        ORDER BY created_at DESC LIMIT $limit";
+        $result = $this->db->query($sql);
+
+        return ($result->rowCount() > 0) ? $result->fetchAll(PDO::FETCH_ASSOC) : [];
     }
 }
 

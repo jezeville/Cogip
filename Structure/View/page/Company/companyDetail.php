@@ -1,19 +1,7 @@
 
-
-<!-- Regarder à modifier  -->
-
-<?php
-    require_once('../Controller/getCompanyDetail.php');
-    $Company = new CompanyDetail($db);
-    $idCompany = trim($_GET['id']);
-    $result = $Company->searchCompany($idCompany);
-    $result2 = $Company->searchInvoices($idCompany);
-    $result3 = $Company->searchContact($idCompany);
-?>
-
-<!-- ------------------  -->
-
-    <?php require '../../element/header.php' ; ?>
+    <?php 
+    require '../../../Controller/getCompanyDetail.php';
+    require '../../element/header.php' ; ?>
     <main>
     <div class="items-center m-auto w-4/5">
         <!-- information sur l'entreprise -->

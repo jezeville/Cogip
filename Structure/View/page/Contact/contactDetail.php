@@ -1,14 +1,7 @@
 
-<!-- Regarder à modifier  -->
-<?php
-    require_once('../Controller/getContactDetail.php');
-    $Contact = new ContactDetail($db);
-    $idContact = trim($_GET['id']);
-    $result = $Contact->searchContact($idContact);
-?>
-<!-- ------------------  -->
-
-    <?php require '../../element/header.php' ; ?>
+    <?php 
+    require '../../../Controller/getContactDetail.php';
+    require '../../element/header.php' ; ?>
     <main>
     <div class="items-center m-auto w-4/5 flex flex-row justify-center">
         <div class="w-3/6">
@@ -32,5 +25,3 @@
     </div>
     </main>
     <?php require '../../element/footer.php' ; ?>
-</body>
-</html>

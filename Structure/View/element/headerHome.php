@@ -33,7 +33,7 @@
         </div>
         <div class="flex w-full items-center justify-center bg-yellow-300"> <!-- conteneur du hero -->
             <div class="w-2/6 uppercase text-6xl font-black">Manage your customers and invoices easily</div> <!-- texte du hero -->
-            <div class="w-2/6 pointer-events-none select-none"><img src="../src/img/hero.png"></div> <!-- image du hero -->
+            <div class="w-2/6 pointer-events-none select-none"><img src="../../src/img/hero.png"></div> <!-- image du hero -->
         </div>
 
         <div class="ml-24 mt-8 hidden md:block"> <!-- SVG décoratif de la bannière -->

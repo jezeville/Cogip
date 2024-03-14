@@ -1,5 +1,5 @@
 <?php
-require '../Core/connection.php';
+require '../../../Core/connection.php';
 
 
 class Invoices
@@ -54,6 +54,35 @@ class Invoices
         $stmt->execute();
 
         return $stmt;
+    }
+
+    public function searchInvoicesByID($searchValue)
+    {
+        $searchValue = '%' . $searchValue . '%';
+        $sql = "SELECT invoices.*, companies.name AS company_name 
+            FROM invoices
+            JOIN companies ON invoices.id_company = companies.id
+            WHERE companies.id LIKE :searchValue
+            ORDER BY invoices.created_at DESC";
+
+
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindParam(':searchValue', $searchValue, PDO::PARAM_STR);
+        $stmt->execute();
+
+        return $stmt;
+    }
+
+    public function getLatestInvoices($limit) {
+        $sql = "SELECT invoices.ref, DATE(invoices.due_date) as due_date, companies.name AS company_name, DATE(invoices.created_at) as created_at  
+            FROM invoices
+            JOIN companies ON invoices.id_company = companies.id
+            JOIN types ON companies.type_id = types.id
+            ORDER BY invoices.created_at DESC LIMIT $limit";
+    
+        $result = $this->db->query($sql);
+    
+        return ($result->rowCount() > 0) ? $result->fetchAll(PDO::FETCH_ASSOC) : [];
     }
 }
 

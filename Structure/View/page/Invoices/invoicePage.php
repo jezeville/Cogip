@@ -1,27 +1,8 @@
 
-    <!-- Regarder à modifier  -->
-    <?php
-        require('../Controller/getInvoice.php');
-
-        $invoicesDisplay = new Invoices($db);
-
-        // pagination paramétrage
-        $maxPage = 10;
-        $defaultPage = 1;
-        $currentPage = isset($_GET['page']) ? intval($_GET['page']) : $defaultPage;
-        $offset = ($currentPage - 1) * $maxPage;
-
-        // formulaire
-        if(isset($_POST['inputInvoices'])){
-            $searchValue = trim($_POST['inputInvoices']);
-            $result = $invoicesDisplay->searchInvoices($searchValue);
-        } else {
-            $result = $invoicesDisplay->getInvoicesPagination($maxPage, $offset);
-        }
-    ?>
-
-    <!-- ------------------  -->
-    <?php require('header.php'); ?>
+  
+    <?php 
+     require '../../../Controller/getInvoice.php';
+     require '../../element/header.php' ; ?>
 
         <main>
             <div class="items-center m-auto w-4/5">
@@ -99,4 +80,4 @@
             ?>
             </div>
         </main>
-    <?php require ('footer.php');?>
+    <?php require '../../element/footer.php' ; ?>

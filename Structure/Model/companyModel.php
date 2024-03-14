@@ -1,7 +1,7 @@
 
 <?php 
-echo 'test model';
-require '../Core/connection.php';
+
+require '../../../Core/connection.php';
 
 class Company
 {
@@ -52,6 +52,31 @@ class Company
         $stmt->execute();
 
         return $stmt;
+    }
+
+    public function searchCompanyByID($searchValue)
+    {
+        $searchValue = '%' . $searchValue . '%';
+        $sql = "SELECT companies.*, types.name AS type_name 
+             FROM companies INNER JOIN types ON companies.type_id = types.id 
+             WHERE companies.id LIKE :searchValue
+             ORDER BY companies.name ASC ";
+
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindParam(':searchValue', $searchValue, PDO::PARAM_STR);
+        $stmt->execute();
+
+        return $stmt;
+    }
+
+    public function getLatestCompanies($limit) {
+        $sql = "SELECT companies.name, companies.TVA, companies.country, types.name AS type_name,DATE(companies.created_at) AS created_at 
+        FROM companies 
+        JOIN types ON companies.type_id = types.id
+        ORDER BY created_at DESC LIMIT $limit";
+        $result = $this->db->query($sql);
+
+        return ($result->rowCount() > 0) ? $result->fetchAll(PDO::FETCH_ASSOC) : [];
     }
 }
 
