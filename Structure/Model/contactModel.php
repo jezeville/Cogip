@@ -67,7 +67,8 @@ class Contact
         return $stmt;
     }
 
-    public function getLatestContact($limit) {
+    public function getLatestContact($limit)
+    {
         $sql = "SELECT contacts.name, contacts.phone, contacts.email, companies.name AS company_name, DATE(contacts.created_at) as created_at 
         FROM contacts 
         JOIN companies ON contacts.company_id = companies.id
@@ -76,6 +77,41 @@ class Contact
 
         return ($result->rowCount() > 0) ? $result->fetchAll(PDO::FETCH_ASSOC) : [];
     }
-}
 
-?>
+    public function getContactDashboard()
+    {
+        $sql = "SELECT contacts.name, contacts.phone, contacts.email, contacts.id
+        FROM contacts
+        ORDER BY id DESC
+        LIMIT 5";
+
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function createContact($name, $email, $phone)
+    {
+
+
+        $createdAt = date('Y-m-d H:i:s');
+
+        $sqlContact = "INSERT INTO contacts (name, email, phone, created_at) VALUES (:name, :email, :phone, :created_at)";
+        $stmtContact = $this->db->prepare($sqlContact);
+        $stmtContact->bindParam(':name', $name, PDO::PARAM_STR);
+        $stmtContact->bindParam(':email', $email);
+        $stmtContact->bindParam(':phone', $phone);
+        $stmtContact->bindParam(':created_at', $createdAt);
+
+        $this->db->beginTransaction();
+        try {
+            $stmtContact->execute();
+            $this->db->commit();
+            header("location: ../view/dashboard.php");
+        } catch (Exception $e) {
+            $this->db->rollBack();
+            echo "Erreur : " . $e->getMessage();
+        }
+    }
+}

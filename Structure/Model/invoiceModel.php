@@ -73,17 +73,100 @@ class Invoices
         return $stmt;
     }
 
-    public function getLatestInvoices($limit) {
+    public function getLatestInvoices($limit)
+    {
         $sql = "SELECT invoices.ref, DATE(invoices.due_date) as due_date, companies.name AS company_name, DATE(invoices.created_at) as created_at  
             FROM invoices
             JOIN companies ON invoices.id_company = companies.id
             JOIN types ON companies.type_id = types.id
             ORDER BY invoices.created_at DESC LIMIT $limit";
-    
+
         $result = $this->db->query($sql);
-    
+
         return ($result->rowCount() > 0) ? $result->fetchAll(PDO::FETCH_ASSOC) : [];
     }
-}
 
-?>
+    public function getInvoicesDashboard()
+    {
+        $sql = "SELECT invoices.ref, invoices.id, DATE(invoices.created_at) as created_date, companies.name AS company_name 
+            FROM invoices
+            JOIN companies ON invoices.id_company = companies.id
+            JOIN types ON companies.type_id = types.id
+            ORDER BY invoices.created_at DESC
+            LIMIT 5";
+
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function createInvoice($ref, $price, $name)
+    {
+
+
+        $createdAt = date('Y-m-d H:i:s');
+        $dueDate = date('Y-m-d', strtotime('+30 days'));
+
+        $sqlInvoice = "INSERT INTO invoices (ref, price, created_at, due_date) VALUES (:ref, :price, :created_at, :due_date)";
+        $stmtInvoice = $this->db->prepare($sqlInvoice);
+        $stmtInvoice->bindParam(':ref', $ref, PDO::PARAM_STR);
+        $stmtInvoice->bindParam(':price', $price);
+        $stmtInvoice->bindParam(':created_at', $createdAt);
+        $stmtInvoice->bindParam(':due_date', $dueDate);
+
+        $sqlCompanies = "INSERT INTO companies (name) VALUES (:name)";
+        $stmtCompanies = $this->db->prepare($sqlCompanies);
+        $stmtCompanies->bindParam(':name', $name);
+
+        $this->db->beginTransaction();
+        try {
+            $stmtInvoice->execute();
+            $stmtCompanies->execute();
+            $this->db->commit();
+            header("location: ../view/dashboard.php");
+        } catch (Exception $e) {
+            $this->db->rollBack();
+            echo "Erreur : " . $e->getMessage();
+        }
+    }
+}
+class Company extends management
+{
+    public function getCompanyDashboard()
+    {
+        $sql = "SELECT name, tva, country, id
+        FROM companies
+        ORDER BY id DESC
+        LIMIT 5";
+
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function createCompany($name, $country, $tva)
+    {
+
+
+        $createdAt = date('Y-m-d H:i:s');
+
+        $sqlCompany = "INSERT INTO companies (name, country, tva, created_at) VALUES (:name, :country, :tva, :created_at)";
+        $stmtCompany = $this->db->prepare($sqlCompany);
+        $stmtCompany->bindParam(':name', $name, PDO::PARAM_STR);
+        $stmtCompany->bindParam(':country', $country);
+        $stmtCompany->bindParam(':tva', $tva);
+        $stmtCompany->bindParam(':created_at', $createdAt);
+
+        $this->db->beginTransaction();
+        try {
+            $stmtCompany->execute();
+            $this->db->commit();
+            header("location: ../view/dashboard.php");
+        } catch (Exception $e) {
+            $this->db->rollBack();
+            echo "Erreur : " . $e->getMessage();
+        }
+    }
+}
