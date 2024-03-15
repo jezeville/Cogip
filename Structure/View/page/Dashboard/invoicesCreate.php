@@ -1,30 +1,40 @@
-<?php require('../../Controller/getInvoices.php'); ?>
-<?php require('../../Model/connection.php'); ?>
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Créer une facture</title>
 </head>
+
 <body>
 
-<?php
-$invoiceManager = new Invoices($db);
-$invoiceManager->createInvoice($db);
-?>
+    <?php
 
-<form method="POST" action="">
-    <h2>New invoice</h2>
-    <input name="reference" placeholder="Reference"><br>
-    <input name="company_name" placeholder="Company name">
-    <input type="submit" value="Validate">
+    require_once '../Controller/Getdashboard.php';
+
+    if (isset($_POST['save_invoice'])) {
+        $ref = $_POST['ref'];
+        $price = $_POST['price'];
+        $name = $_POST['company_name'];
+
+        $invoices = new Invoices($db);
+
+        if ($invoices->createInvoice($ref, $price, $name)) {
+            echo "Facture ajoutée avec succès.";
+        } else {
+            echo "Erreur lors de l'ajout de la facture.";
+        }
+    }
+    ?>
+
+<form action="" method="post">
+    <input placeholder="Reference" type="text" id="ref" name="ref" required><br><br>
+    <input placeholder="Price" type="number" id="price" name="price" required><br><br>
+    <input placeholder="Company name" type="text" id="company_name" name="company_name" required><br><br>
+    <input type="submit" name="save_invoice" value="Ajouter Facture">
 </form>
 
-
 </body>
+
 </html>
