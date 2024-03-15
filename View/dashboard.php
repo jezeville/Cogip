@@ -12,44 +12,24 @@
 <body>
 
     <!-- factures -->
-
     <?php
     $invoices = (new Invoices($db))->getInvoicesDashboard();
 
-    if (isset($_POST['delete_invoices'])) {
+    if (isset($_POST['delete_button'])) { 
         $deleteInvoices = (new Invoices($db))->deleteFunction('invoices', $_POST['delete_invoices']);
     }
 
-    if (isset($_POST['save_button'])) {
-        echo "Save button clicked!";
-
-        // Utilisez l'ID envoyé depuis la requête AJAX
-        $id = isset($_POST['id']) ? $_POST['id'] : null;
-
-        if ($id !== null && isset($_POST['ref']) && isset($_POST['created_at']) && isset($_POST['company_name'])) {
-            $value1 = $_POST['ref'];
-            $value2 = $_POST['created_at'];
-            $value3 = $_POST['company_name'];
-
-            echo "ID: $id, Value1: $value1, Value2: $value2, Value3: $value3";
-
-            $update = (new management($db))->updateFunction([$value1, $value2, $value3,], $id);
-
-            try {
-                if ($update) {
-                    echo "Mise à jour réussie côté client.";
-                } else {
-                    echo "Erreur lors de la mise à jour côté client.";
-                }
-            } catch (PDOException $e) {
-                echo "Erreur SQL : " . $e->getMessage();
-            }
-        }
+    if (isset($_POST['saveButton'])) { 
+        $id = $_POST['id']; 
+        $ref = $_POST['ref']; 
+        $created_at = $_POST['created_at']; 
+        $company_name = $_POST['company_name']; 
+        
+        $invoices = new Invoices($db);
+        $invoices->updateInvoice($ref, $created_at, $company_name, $id); 
     }
-
-
-
     ?>
+
 
     <!-- Invoices -->
     <div>
@@ -69,12 +49,11 @@
                     <td><a href='edit_invoices.php?ref=<?php echo $row['ref']; ?>'><?php echo $row['ref']; ?></a></td>
 
                     <td>
-                        <?php echo $row['created_date']; ?>
+                        <span class="editable" data-field="created_at" data-id="<?php echo $row['id']; ?>"><?php echo $row['created_date']; ?></span>
                     </td>
                     <td>
-                        <?php echo $row['company_name']; ?>
+                        <span class="editable" data-field="company_name" data-id="<?php echo $row['id']; ?>"><?php echo $row['company_name']; ?></span>
                     </td>
-
 
                     <td>
                         <form method="POST" action="dashboard.php">
@@ -83,25 +62,17 @@
                         </form>
                     </td>
 
-
                     <td>
-                        <button class="updateButton" onclick="enableEditing(this, '<?php echo $row['ref']; ?>')">Update</button>
+                        <button class="updateButton" onclick="enableEditing(this, '<?php echo $row['id']; ?>')">Update</button>
                     </td>
 
-
-
                     <td>
-                        <button class="saveButton" onclick="saveChanges(this)" style="display:none;" data-id="<?php echo $row['id']; ?>" data-ref="<?php echo $row['ref']; ?>" data-created_at="<?php echo $row['created_date']; ?>" data-company_name="<?php echo $row['company_name']; ?>">Save</button>
-
-
+                        <button class="saveButton" onclick="saveChanges(this)" style="display:none;" data-id="<?php echo $row['id']; ?>">Save</button>
                     </td>
-
-
                 </tr>
             <?php endforeach; ?>
         </table>
     </div>
-
 
 
     <!-- company -->

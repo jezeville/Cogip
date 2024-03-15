@@ -27,34 +27,15 @@ class management
         }
     }
 
-    public function updateFunction($table, $id)
+    public function updateInvoice($id, $ref, $createdAt, $companyName)
     {
-        try {
-            $sql = "UPDATE invoices
-            INNER JOIN companies ON invoices.id_company = companies.id
-            SET invoices.ref = :ref, invoices.created_at = :created_at, companies.name = :company_name
-            WHERE invoices.id = :id";
-
-            $stmt = $this->db->prepare($sql);
-            $stmt->bindParam(':ref', $table[0]);
-            $stmt->bindParam(':created_at', $table[1]);
-            $stmt->bindParam(':company_name', $table[2]);
-            $stmt->bindParam(':id', $id);  // Utilisez le paramètre distinct pour l'ID
-
-            $stmt->execute();
-
-            // Vérifiez si la mise à jour a réussi
-            $rowCount = $stmt->rowCount();
-            if ($rowCount > 0) {
-                return true;
-            } else {
-                return false;
-            }
-        } catch (PDOException $e) {
-            echo "Erreur lors de la mise à jour : " . $e->getMessage();
-            echo "<br>Query: " . $sql;
-            return false;
-        }
+        $sql = "UPDATE invoices SET ref = :ref, created_at = :created_at, id_company = (SELECT id FROM companies WHERE name = :company_name) WHERE id = :id";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindParam(':ref', $ref, PDO::PARAM_STR);
+        $stmt->bindParam(':created_at', $createdAt);
+        $stmt->bindParam(':company_name', $companyName, PDO::PARAM_STR);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
     }
 }
 
