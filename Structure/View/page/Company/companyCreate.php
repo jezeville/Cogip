@@ -1,3 +1,5 @@
+companyCreate.php : 
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,24 +11,6 @@
 
 <body>
 
-    <?php
-    
-    require_once '../Controller/Getdashboard.php';
-
-    if (isset($_POST['save_company'])) {
-        $name = $_POST['name'];
-        $country = $_POST['country'];
-        $tva = $_POST['tva'];
-    
-        $company = new Company($db);
-    
-        if ($company->createCompany($name, $country, $tva)) {
-            echo "Facture ajoutée avec succès.";
-        } else {
-            echo "Erreur lors de l'ajout de la facture.";
-        }
-    }
-    ?>
 
 <form action="" method="post">
     <input placeholder="name" type="text" id="name" name="name" required><br><br>

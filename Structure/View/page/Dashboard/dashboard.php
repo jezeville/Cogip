@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<?php require('../Controller/Getdashboard.php'); ?>
+<?php require('../../../Controller/getCompany.php'); ?>
+<?php require('../../../Controller/getContact.php'); ?>
+<?php require('../../../Controller/getInvoice.php'); ?>
+<?php require('../../../Controller/delete.php'); ?>
+
 
 <head>
     <meta charset="UTF-8">
@@ -11,24 +15,6 @@
 
 <body>
 
-    <!-- factures -->
-    <?php
-    $invoices = (new Invoices($db))->getInvoicesDashboard();
-
-    if (isset($_POST['delete_button'])) { 
-        $deleteInvoices = (new Invoices($db))->deleteFunction('invoices', $_POST['delete_invoices']);
-    }
-
-    if (isset($_POST['saveButton'])) { 
-        $id = $_POST['id']; 
-        $ref = $_POST['ref']; 
-        $created_at = $_POST['created_at']; 
-        $company_name = $_POST['company_name']; 
-        
-        $invoices = new Invoices($db);
-        $invoices->updateInvoice($ref, $created_at, $company_name, $id); 
-    }
-    ?>
 
 
     <!-- Invoices -->
@@ -58,8 +44,9 @@
                     <td>
                         <form method="POST" action="dashboard.php">
                             <input type="hidden" name="delete_invoices" value="<?php echo $row['id']; ?>">
-                            <button type="submit" name="delete_button">Delete</button>
+                            <button type="submit" name="delete_button_invoices">Delete</button>
                         </form>
+
                     </td>
 
                     <td>
@@ -74,13 +61,6 @@
         </table>
     </div>
 
-
-    <!-- company -->
-    <?php
-    $company = (new Company($db))->getCompanyDashboard();
-    if (isset($_POST['delete_company'])) {
-        $deleteCompany = (new Company($db))->deleteFunction('companies', $_POST['delete_company']);
-    } ?>
     <div>
         <h2>Last companies</h2>
         <table border='1'>
@@ -98,8 +78,9 @@
                     <td>
                         <form method="POST" action="dashboard.php">
                             <input type="hidden" name="delete_company" value="<?php echo $row['id']; ?>">
-                            <button type="submit" name="delete_button">Delete</button>
+                            <button type="submit" name="delete_button_company">Delete</button>
                         </form>
+
                     </td>
                     <td>
                         <button class="updateButton" onclick="update(this, <?php echo $row['id']; ?>)" value="<?php echo $row['id']; ?>">Update</button>
@@ -109,12 +90,6 @@
         </table>
     </div>
 
-    <!-- contact -->
-    <?php
-    $contact = (new Contact($db))->getContactDashboard();
-    if (isset($_POST['delete_contact'])) {
-        $deleteContact = (new Contact($db))->deleteFunction('contacts', $_POST['delete_contact']);
-    } ?>
     <div>
         <h2>Last contacts</h2>
         <table border='1'>
@@ -132,8 +107,9 @@
                     <td>
                         <form method="POST" action="dashboard.php">
                             <input type="hidden" name="delete_contact" value="<?php echo $row['id']; ?>">
-                            <button type="submit" name="delete_button">Delete</button>
+                            <button type="submit" name="delete_button_contact">Delete</button>
                         </form>
+
                     </td>
                     <td>
                         <button class="updateButton" onclick="update(this, <?php echo $row['id']; ?>)" value="<?php echo $row['id']; ?>">Update</button>
@@ -142,14 +118,6 @@
             <?php endforeach; ?>
         </table>
     </div>
-
-
-    <script src="src/invoicesUpdate.js"></script>
-    <script src="src/companyUpdate.js"></script>
-    <script src="src/contactsUpdate.js"></script>
-
 </body>
-
-
 
 </html>

@@ -17,4 +17,4 @@ if(isset($_POST['inputContact'])){
 } else {
     $result = $ContactDisplay->getContactPagination($maxPage, $offset);
 }
-?>
+
