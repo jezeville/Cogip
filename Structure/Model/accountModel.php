@@ -1,11 +1,6 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
-require('../Model/connection.php');
-
-    class Account
+require '../../../Core/connection.php';
+class Account
     {
         private $db;
 
@@ -17,12 +12,7 @@ require('../Model/connection.php');
         public function processRegistration()
         {
             {
-                if(isset($_POST["valider"])) {
-                    // Ajoutez des instructions de débogage ici
-                    echo "Form submitted successfully.";
-                    var_dump($_POST); // Afficher les données du formulaire
-                    // Continuez avec le reste de votre logique
-                }
+                
                 // Récupérer les données du formulaire
                 $registration_first_name = isset($_POST["registration_first_name"]) ? $_POST["registration_first_name"] : "";
                 $registration_last_name = isset($_POST["registration_last_name"]) ? $_POST["registration_last_name"] : "";

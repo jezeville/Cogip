@@ -1,5 +1,6 @@
 <?php
-require('../Model/connection.php');
+require '../../../Core/connection.php';
+
 
 class Authentification
 {
@@ -24,15 +25,15 @@ class Authentification
             $password = isset($_POST["password"]) ? $_POST["password"] : "";
 
             if (empty($first_name)) {
-                $first_nameErr = "Prénom requis";
+                $first_nameErr = "first name required";
             }
 
             if (empty($last_name)) {
-                $last_nameErr = "Nom de famille requis";
+                $last_nameErr = "last name required";
             }
 
             if (empty($password)) {
-                $passwordErr = "Mot de passe requis";
+                $passwordErr = "password required";
             }
 
             if (empty($first_nameErr) && empty($last_nameErr) && empty($passwordErr)) {
@@ -45,12 +46,12 @@ class Authentification
                     if ($row && password_verify($password, $row["password"])) {
                         $_SESSION["user_id"] = $row["id"];
                          
-                    $errorMessage = "Connexion réussie !";
+                    $errorMessage = "successful registration !";
                        
-                        header("Location: homePage.php");
+                        header("Location: ../Home/homePage.php");
                         exit();
                     } else {
-                        $this->errorMessage = "Prénom, nom de famille ou mot de passe incorrect";
+                        $this->errorMessage = "Incorrect first name, last name, or password";
                     }
                 } else {
                     
@@ -65,4 +66,4 @@ class Authentification
         return $this->errorMessage;
     }
 }
-?>
+

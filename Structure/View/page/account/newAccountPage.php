@@ -1,10 +1,6 @@
 
 <?php 
     require '../../../Controller/getAccount.php';
-
-$authen = new Account($db);
-$authen->processRegistration();
-
 ?>
 
 <!DOCTYPE html>
@@ -21,7 +17,7 @@ $authen->processRegistration();
 
     <div class="w-screen h-screen flex flex-col justify-center items-center lg:grid lg:grid-cols-2">
 
-            <img src="src\img\unlock.svg" class="lg-block mx-60 w-60 hover:scale-150 transition-all duration-500 transform max-auto " />
+            <img src="..\..\src\img\unlock.svg" class="lg-block mx-60 w-60 hover:scale-150 transition-all duration-500 transform max-auto " />
             
             <form class="flex flex-col justify-center " method="post" action="newAccountPage.php">
                 
@@ -34,7 +30,7 @@ $authen->processRegistration();
                     <input type="text" name="registration_last_name" placeholder="last_name" class="pl-8 border-b-2 font-display focus:outline-none focus:border-yellow-400 capitalize transition-all duration-500 text-lg" required>
                 </div>
                 <div class="relative mt-8">
-                    <i class="fa fa-user absolute text-yellow-400 text-xl"></i>
+                    <i class="fa fa-envelope absolute text-yellow-400 text-xl"></i>
                     <input type="email" name="registration_email" placeholder="email" class="pl-8 border-b-2 font-display focus:outline-none focus:border-yellow-400 transition-all duration-500 text-lg" required>
                 </div>
                 <div class="relative mt-8">
