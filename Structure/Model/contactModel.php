@@ -1,6 +1,4 @@
 <?php
-require '../../../Core/connection.php';
-
 
 class Contact
 {

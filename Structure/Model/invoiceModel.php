@@ -1,5 +1,4 @@
 <?php
-require '../../../Core/connection.php';
 
 
 class Invoices

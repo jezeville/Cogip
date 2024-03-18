@@ -1,9 +1,4 @@
 
-
-    <?php 
-    require '../../../Controller/getHome.php';
-    require '../../element/headerHome.php' ; 
-    ?>
     <main class="items-center m-auto w-4/5">
         <section>
             <div class="relative mt-14">
@@ -96,15 +91,15 @@
     <div class="flex">
     <!-- Image 2 with reduced size -->
     <div class="relative">
-        <img src="../../src/img/ph2.png" alt="Description of Image 2" class="w-97 h-auto">
+        <img src="View/src/img/ph2.png" alt="Description of Image 2" class="w-97 h-auto">
 
         <!-- Image 1 inside Image 2 -->
         <div class="absolute inset-0 flex items-center justify-center">
-            <img src="../../src/img/ph1.png" alt="Description of Image 1" class="w-110 h-auto mb-2">
+            <img src="View/src/img/ph1.png" alt="Description of Image 1" class="w-110 h-auto mb-2">
         </div>
     </div>
     </div>
     </div>
 
-<?php require '../../element/footer.php' ; ?>
+
 
