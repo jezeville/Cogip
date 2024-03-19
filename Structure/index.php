@@ -13,6 +13,9 @@ $routes = [
     '/sign' => 'sign',
     '/login' => 'login',
     '/dashboard' => 'dashboard',
+    '/dashboard/invoice'=>'dashboard_invoice',
+    '/dashboard/contact'=>'dashboard_contact',
+    '/dashboard/companie'=>'dashboard_companie',
 ];
 
 // Vérifier si le chemin demandé correspond à une route
@@ -74,7 +77,25 @@ else {
             require __DIR__ . '/Controller/delete.php';
             require __DIR__ . '/Controller/create.php';
             require __DIR__ . '/View/page/Dashboard/dashboard.php'; 
-        }
+        
+        // case 'dashboard_invoice':
+        //     require __DIR__ . '/Model/deleteModel.php';
+        //     require __DIR__ . '/Controller/delete.php';
+        //     require __DIR__ . '/Controller/create.php';
+        //     require __DIR__ . '/View/page/Dashboard/dashboard.php'; 
+        
+        // case 'dashboard_contact':
+        //     require __DIR__ . '/Model/deleteModel.php';
+        //     require __DIR__ . '/Controller/delete.php';
+        //     require __DIR__ . '/Controller/create.php';
+        //     require __DIR__ . '/View/page/Dashboard/dashboard.php'; 
+        
+        // case 'dashboard_companie':
+        //     require __DIR__ . '/Model/deleteModel.php';
+        //     require __DIR__ . '/Controller/delete.php';
+        //     require __DIR__ . '/Controller/create.php';
+        //     require __DIR__ . '/View/page/Dashboard/dashboard.php'; 
+         }
 }
 
     
