@@ -18,10 +18,10 @@
 
                 <nav class="ml-24 flex items-center"> <!-- élément de la navbar -->
                     <ul class="list-none flex space-x-4 md:max-xl:space-x-0">
-                        <li class="text-xl font-bold border-none hover:border-solid border-2 border-black px-2 py-2 active:border-solid border-2"><a href="#home">Home</a></li>
-                        <li class="text-xl font-bold border-none hover:border-solid border-2 border-black px-2 py-2 active:border-solid border-2"><a href="#invoice">Invoice</a></li>
-                        <li class="text-xl font-bold border-none hover:border-solid border-2 border-black px-2 py-2 active:border-solid border-2"><a href="#companies">Companies</a></li>
-                        <li class="text-xl font-bold border-none hover:border-solid border-2 border-black px-2 py-2 active:border-solid border-2"><a href="#contact">Contact</a></li>
+                        <li class="text-xl font-bold border-none hover:border-solid border-2 border-black px-2 py-2 active:border-solid border-2"><a href="/">Home</a></li>
+                        <li class="text-xl font-bold border-none hover:border-solid border-2 border-black px-2 py-2 active:border-solid border-2"><a href="/contact">Contact</a></li>
+                        <li class="text-xl font-bold border-none hover:border-solid border-2 border-black px-2 py-2 active:border-solid border-2"><a href="/invoice">Invoice</a></li>
+                        <li class="text-xl font-bold border-none hover:border-solid border-2 border-black px-2 py-2 active:border-solid border-2"><a href="/companies">Companies</a></li>
                     </ul>
                 </nav>
             </div>
@@ -33,7 +33,7 @@
         </div>
         <div class="flex w-full items-center justify-center bg-yellow-300"> <!-- conteneur du hero -->
             <div class="w-2/6 uppercase text-6xl font-black">Manage your customers and invoices easily</div> <!-- texte du hero -->
-            <div class="w-2/6 pointer-events-none select-none"><img src="../../src/img/hero.png"></div> <!-- image du hero -->
+            <div class="w-2/6 pointer-events-none select-none"><img src="View/src/img/hero.png"></div> <!-- image du hero -->
         </div>
 
         <div class="ml-24 mt-8 hidden md:block"> <!-- SVG décoratif de la bannière -->

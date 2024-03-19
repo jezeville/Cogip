@@ -9,30 +9,30 @@
                         </div>
                         <div class="w-1/2"> <!-- div conteneur informations sur la brand -->
                             <div class="flex items-center mb-4">
-                                <img class="pr-[2%]" src="../src/img/adresse.png">
+                                <img class="pr-[2%]" src="View/src/img/adresse.png">
                                 <p class="text-[#0A142F] text-sm">345 Faulconer Drive, Suite 4 • Charlottesville, CA, 12345</p>
                             </div>
                             <div class="flex items-center mb-4"> <!-- div conteneur numéro de tel et du fax (à mettre en flex) -->
                                 <div class="flex w-1/2"> <!-- téléphone -->
-                                    <img class="pr-[4%]" src="../src/img/phone.png">
+                                    <img class="pr-[4%]" src="View/src/img/phone.png">
                                     <p class="text-[#0A142F] text-sm">(123) 456-7890</p>
                                 </div>
 
                                 <div class="flex items-center w-1/2 mb-2"> <!-- fax -->
-                                    <img class="pr-[4%]" src="../src/img/fax.png">
+                                    <img class="pr-[4%]" src="View/src/img/fax.png">
                                     <p class="text-[#0A142F] text-sm">(123) 456-7890</p>
                                 </div>
                             </div>
 
                             <div class="flex items-center"> <!-- social medias -->
                                 <p class="pr-[3%] text-sm text-[#0A142F]">Social Media</p>
-                                <img class="pr-[3%]" src="../src/img/twitter.png">
-                                <img class="pr-[3%]" src="../src/img/facebook.png">
-                                <img class="pr-[3%]" src="../src/img/linkedin.png">
-                                <img class="pr-[3%]" src="../src/img/youtube.png">
-                                <img class="pr-[3%]" src="../src/img/instagram.png">
-                                <img class="pr-[3%]" src="../src/img/google.png">
-                                <img class="pr-[3%]" src="../src/img/pinterest.png">
+                                <img class="pr-[3%]" src="View/src/img/twitter.png">
+                                <img class="pr-[3%]" src="View/src/img/facebook.png">
+                                <img class="pr-[3%]" src="View/src/img/linkedin.png">
+                                <img class="pr-[3%]" src="View/src/img/youtube.png">
+                                <img class="pr-[3%]" src="View/src/img/instagram.png">
+                                <img class="pr-[3%]" src="View/src/img/google.png">
+                                <img class="pr-[3%]" src="View/src/img/pinterest.png">
                             </div>
                         </div>
                     </div>

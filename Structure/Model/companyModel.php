@@ -1,8 +1,5 @@
 
 <?php 
-
-require '../../../Core/connection.php';
-
 class Company
 {
     private $db;
