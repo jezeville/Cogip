@@ -78,7 +78,7 @@
                             <th class="text-left">Invoice number</th>
                             <th class="text-left">Date</th>
                             <th class="text-left">Company</th>
-                            <th class="text-left">Action</th>
+                            <th class="text-left">Delete</th>
                         </tr>
                         <?php foreach ($invoices as $row): ?>
                             <tr class="edit-mode text-sm" id="invoice_<?php echo $row['id']; ?>">
