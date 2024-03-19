@@ -36,7 +36,7 @@
                     </td>
 
                     <td>
-                        <form method="POST" action="index.php">
+                        <form method="POST" action="/Cogip/Structure/dashboard">
                             <input type="hidden" name="delete_invoices" value="<?php echo $row['id']; ?>">
                             <button type="submit" name="delete_button_invoices">Delete</button>
                         </form>
@@ -70,7 +70,7 @@
                     <td><?php echo $row['tva']; ?></td>
                     <td><?php echo $row['country']; ?></a></td>
                     <td>
-                        <form method="POST" action="index.php">
+                        <form method="POST" action="dashboard">
                             <input type="hidden" name="delete_company" value="<?php echo $row['id']; ?>">
                             <button type="submit" name="delete_button_company">Delete</button>
                         </form>
@@ -99,7 +99,7 @@
                     <td><?php echo $row['phone']; ?></td>
                     <td><?php echo $row['email']; ?></a></td>
                     <td>
-                        <form method="POST" action="index.php">
+                        <form method="POST" action="dashboard">
                             <input type="hidden" name="delete_contact" value="<?php echo $row['id']; ?>">
                             <button type="submit" name="delete_button_contact">Delete</button>
                         </form>

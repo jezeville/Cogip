@@ -12,6 +12,7 @@ $routes = [
     '/invoice' => 'invoice',
     '/sign' => 'sign',
     '/login' => 'login',
+    '/dashboard' => 'dashboard',
 ];
 
 // Vérifier si le chemin demandé correspond à une route
@@ -67,16 +68,15 @@ else {
             require __DIR__ . '/Controller/auth.php';
             require __DIR__ . '/View/page/account/login.php';
             break;    
+    
+        case 'dashboard':
+            require __DIR__ . '/Model/deleteModel.php';
+            require __DIR__ . '/Controller/delete.php';
+            require __DIR__ . '/Controller/create.php';
+            require __DIR__ . '/View/page/Dashboard/dashboard.php'; 
         }
 }
 
-    // require __DIR__ . '/Core/connection.php';
-    // require __DIR__ . '/Model/companyModel.php';
-    // require __DIR__ . '/Model/invoiceModel.php';
-    // require __DIR__ . '/Model/contactModel.php';
-    // require __DIR__ . '/Model/deleteModel.php';
-    // require __DIR__ . '/Controller/delete.php';
-    // require __DIR__ . '/Controller/create.php';
-    // require __DIR__ . '/View/page/Dashboard/dashboard.php'; 
+    
 
 ?>
