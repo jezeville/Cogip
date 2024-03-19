@@ -2,11 +2,6 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<?php 
-require('../../..//Model/companyModel.php');
-require('../../../Model/contactModel.php');
-require('../../../Model/invoiceModel.php');
-?>
 
 <head>
     <meta charset="UTF-8">
@@ -98,25 +93,6 @@ require('../../../Model/invoiceModel.php');
                                     </div>
                                 </td>
 
-                    <td>
-                        <form method="POST" action="/Cogip/Structure/dashboard">
-                            <input type="hidden" name="delete_invoices" value="<?php echo $row['id']; ?>">
-                            <button type="submit" name="delete_button_invoices">Delete</button>
-                        </form>
-
-                    </td>
-
-                    <td>
-                        <button class="updateButton" onclick="enableEditing(this, '<?php echo $row['id']; ?>')">Update</button>
-                    </td>
-
-                    <td>
-                        <button class="saveButton" onclick="saveChanges(this)" style="display:none;" data-id="<?php echo $row['id']; ?>">Save</button>
-                    </td>
-                </tr>
-            <?php endforeach; ?>
-        </table>
-    </div>
                                 <td>
                                     <a href="#"
                                         onclick="toggleEdit('invoice_<?php echo $row['id']; ?>', 'created_date', <?php echo $row['id']; ?>)">
@@ -169,21 +145,6 @@ require('../../../Model/invoiceModel.php');
                         <th class="text-left">Country</th>
                     </tr>
 
-            <?php foreach ($company as $row) : ?>
-                <tr>
-                    <td><a href='edit_company.php?ref=<?php echo $row['name']; ?>'><?php echo $row['name']; ?></a></td>
-                    <td><?php echo $row['tva']; ?></td>
-                    <td><?php echo $row['country']; ?></a></td>
-                    <td>
-                        <form method="POST" action="dashboard">
-                            <input type="hidden" name="delete_company" value="<?php echo $row['id']; ?>">
-                            <button type="submit" name="delete_button_company">Delete</button>
-                        </form>
-
-                    </td>
-                    <td>
-                        <button class="updateButton" onclick="update(this, <?php echo $row['id']; ?>)" value="<?php echo $row['id']; ?>">Update</button>
-                    </td>
                     <?php foreach ($company as $row): ?>
                         <tr class="text-sm">
                             <td>
@@ -217,33 +178,6 @@ require('../../../Model/invoiceModel.php');
             </table>
         </div>
 
-    <div>
-        <h2>Last contacts</h2>
-        <table border='1'>
-            <tr>
-                <th>Name</th>
-                <th>Phone</th>
-                <th>Email</th>
-            </tr>
-
-            <?php foreach ($contact as $row) : ?>
-                <tr>
-                    <td><a href='edit_contact.php?ref=<?php echo $row['name']; ?>'><?php echo $row['name']; ?></a></td>
-                    <td><?php echo $row['phone']; ?></td>
-                    <td><?php echo $row['email']; ?></a></td>
-                    <td>
-                        <form method="POST" action="dashboard">
-                            <input type="hidden" name="delete_contact" value="<?php echo $row['id']; ?>">
-                            <button type="submit" name="delete_button_contact">Delete</button>
-                        </form>
-
-                    </td>
-                    <td>
-                        <button class="updateButton" onclick="update(this, <?php echo $row['id']; ?>)" value="<?php echo $row['id']; ?>">Update</button>
-                    </td>
-                </tr>
-            <?php endforeach; ?>
-        </table>
         <!-- contact -->
         <?php
         $contact = (new Contact($db))->getContactDashboard();
