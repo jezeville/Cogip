@@ -18,10 +18,10 @@
 
                 <nav class="ml-24 flex items-center"> <!-- élément de la navbar -->
                     <ul class="list-none flex space-x-4 md:max-xl:space-x-0">
-                        <li class="text-xl font-bold border-none hover:border-solid border-2 border-black px-2 py-2 active:border-solid border-2"><a href="#home">Home</a></li>
-                        <li class="text-xl font-bold border-none hover:border-solid border-2 border-black px-2 py-2 active:border-solid border-2"><a href="#invoice">Invoice</a></li>
-                        <li class="text-xl font-bold border-none hover:border-solid border-2 border-black px-2 py-2 active:border-solid border-2"><a href="#companies">Companies</a></li>
-                        <li class="text-xl font-bold border-none hover:border-solid border-2 border-black px-2 py-2 active:border-solid border-2"><a href="<?php echo $router->generate('contact');?>">Contact</a></li>
+                        <li class="text-xl font-bold border-none hover:border-solid border-2 border-black px-2 py-2 active:border-solid border-2"><a href="/">Home</a></li>
+                        <li class="text-xl font-bold border-none hover:border-solid border-2 border-black px-2 py-2 active:border-solid border-2"><a href="/contact">Contact</a></li>
+                        <li class="text-xl font-bold border-none hover:border-solid border-2 border-black px-2 py-2 active:border-solid border-2"><a href="/invoice">Invoice</a></li>
+                        <li class="text-xl font-bold border-none hover:border-solid border-2 border-black px-2 py-2 active:border-solid border-2"><a href="/companies">Companies</a></li>
                     </ul>
                 </nav>
             </div>
