@@ -1,8 +1,6 @@
 
   <?php
 
-        require '../../../Model/invoiceModel.php';
-
         $invoicesDisplay = new Invoices($db);
 
         // pagination paramétrage

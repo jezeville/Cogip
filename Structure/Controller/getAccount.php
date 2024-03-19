@@ -1,6 +1,5 @@
 <?php 
 
-require '../../../Model/accountModel.php';
 
 $authen = new Account($db);
 $authen->processRegistration();

@@ -1,8 +1,4 @@
-<?php
-require '../../../Controller/auth.php';
 
- 
-?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -28,7 +24,7 @@ require '../../../Controller/auth.php';
                 <!-- Formulaire de connexion -->
             
         <form class="flex flex-col justify-center items-center" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-            <img src="../../src/img/avatar.svg" class="w-32" />
+            <img src="View/src/img/avatar.svg" class="w-32" />
             <h2 class="my-8 font-display font-bold text-3xl text-gray-700 text-center">Welcome to Cogip</h2>
     <div class="relative">
         <i class="fa fa-user absolute text-yellow-400 text-xl"></i>

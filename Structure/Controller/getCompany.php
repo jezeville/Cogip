@@ -1,6 +1,5 @@
 
 <?php
-    require '../../../Model/companyModel.php';
 
 $CompanyDisplay = new Company($db);
 

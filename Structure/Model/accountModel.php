@@ -1,6 +1,6 @@
 
 <?php
-require '../../../Core/connection.php';
+
 class Account
     {
         private $db;

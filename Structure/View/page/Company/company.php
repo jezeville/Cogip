@@ -1,9 +1,5 @@
 
-    <?php 
-    require '../../../Controller/getCompany.php';
-    require '../../element/header.php' ; 
-
-    ?>
+    
 
     <main>
         <div class="items-center m-auto w-4/5">
@@ -84,4 +80,3 @@
         </div>
         </div>
     </main>
-    <?php require '../../element/footer.php' ; ?>

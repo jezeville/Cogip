@@ -1,6 +1,6 @@
 <?php 
 
-require '../../../Model/authModel.php';
+
 
 $authen = new Authentification($db);
 $authen->processLogin();

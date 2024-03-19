@@ -19,17 +19,17 @@
 
                 <nav class="ml-24 flex items-center"> <!-- élément de la navbar -->
                     <ul class="list-none flex space-x-4 md:max-xl:space-x-0">
-                        <li class="text-xl font-bold border-none hover:border-solid border-2 border-black px-2 py-2 active:border-none"><a href="">Home</a></li>
-                        <li class="text-xl font-bold border-none hover:border-solid border-2 border-black px-2 py-2 active:border-none"><a href="#invoice">Invoice</a></li>
-                        <li class="text-xl font-bold border-none hover:border-solid border-2 border-black px-2 py-2 active:border-none"><a href="#companies">Companies</a></li>
-                        <li class="text-xl font-bold border-none hover:border-solid border-2 border-black px-2 py-2 active:border-none"><a href="#companies">Contact</a></li>
+                        <li class="text-xl font-bold border-none hover:border-solid border-2 border-black px-2 py-2 active:border-none"><a href="/Cogip/Structure/">Home</a></li>
+                        <li class="text-xl font-bold border-none hover:border-solid border-2 border-black px-2 py-2 active:border-none"><a href="/Cogip/Structure/invoice">Invoice</a></li>
+                        <li class="text-xl font-bold border-none hover:border-solid border-2 border-black px-2 py-2 active:border-none"><a href="/Cogip/Structure/contact">Contact</a></li>
+                        <li class="text-xl font-bold border-none hover:border-solid border-2 border-black px-2 py-2 active:border-none"><a href="/Cogip/Structure/companie">Companies</a></li>
                     </ul>
                 </nav>
             </div>
 
             <div class="w-1/6 flex items-center space-x-8 md:max-xl:space-x-2 md:max-xl:w-3/6"> <!-- Conteneur de la navbar login/signup -->
-                <button class="text-xl bg-white font-bold ease-in-out duration-300 rounded-lg px-5 py-3">Sign Up</button>
-                <button class="text-xl font-bold ease-in-out duration-300 hover:bg-yellow-200 rounded-lg px-5 py-3">Login</button>
+                <button class="text-xl bg-white font-bold ease-in-out duration-300 rounded-lg px-5 py-3"><a href="/Cogip/Structure/sign">Sign Up</a></button>
+                <button class="text-xl font-bold ease-in-out duration-300 hover:bg-yellow-200 rounded-lg px-5 py-3"><a href="/Cogip/Structure/login">Login</a></button>
             </div>
         </div>
 

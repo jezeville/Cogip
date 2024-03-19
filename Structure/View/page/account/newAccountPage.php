@@ -1,7 +1,4 @@
 
-<?php 
-    require '../../../Controller/getAccount.php';
-?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -17,7 +14,7 @@
 
     <div class="w-screen h-screen flex flex-col justify-center items-center lg:grid lg:grid-cols-2">
 
-            <img src="..\..\src\img\unlock.svg" class="lg-block mx-60 w-60 hover:scale-150 transition-all duration-500 transform max-auto " />
+            <img src="View/src/img/unlock.svg" class="lg-block mx-60 w-60 hover:scale-150 transition-all duration-500 transform max-auto " />
             
             <form class="flex flex-col justify-center " method="post" action="newAccountPage.php">
                 

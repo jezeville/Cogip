@@ -1,6 +1,6 @@
 
 <?php
-    require '../../../Model/contactModel.php';
+
 
 $ContactDisplay = new Contact($db);
 
