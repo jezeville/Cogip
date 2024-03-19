@@ -1,6 +1,6 @@
-<?php 
-
+<?php
 require '../../../Core/connection.php';
+
 
 class Authentification
 {
@@ -46,9 +46,9 @@ class Authentification
                     if ($row && password_verify($password, $row["password"])) {
                         $_SESSION["user_id"] = $row["id"];
                          
-                    $errorMessage = "Successful onnection !";
+                    $errorMessage = "successful registration !";
                        
-                        header("Location: ../View/page/Home/homePage.php");
+                        header("Location: ../Home/homePage.php");
                         exit();
                     } else {
                         $this->errorMessage = "Incorrect first name, last name, or password";
@@ -66,4 +66,3 @@ class Authentification
         return $this->errorMessage;
     }
 }
-?>

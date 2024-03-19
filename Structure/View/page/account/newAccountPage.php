@@ -1,7 +1,6 @@
-<?php
- 
- require '../../../Controller/getAccount.php';
 
+<?php 
+    require '../../../Controller/getAccount.php';
 ?>
 
 <!DOCTYPE html>
@@ -31,7 +30,7 @@
                     <input type="text" name="registration_last_name" placeholder="last_name" class="pl-8 border-b-2 font-display focus:outline-none focus:border-yellow-400 capitalize transition-all duration-500 text-lg" required>
                 </div>
                 <div class="relative mt-8">
-                    <i class="fa fa-user absolute text-yellow-400 text-xl"></i>
+                    <i class="fa fa-envelope absolute text-yellow-400 text-xl"></i>
                     <input type="email" name="registration_email" placeholder="email" class="pl-8 border-b-2 font-display focus:outline-none focus:border-yellow-400 transition-all duration-500 text-lg" required>
                 </div>
                 <div class="relative mt-8">

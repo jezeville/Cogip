@@ -1,13 +1,15 @@
-<?php
-    require '../../../Model/accountModel.php';
+<?php 
 
-    $authen = new Account($db);
-    $authen->processRegistration();
+require '../../../Model/accountModel.php';
 
-    if(isset($_POST["valider"])) {
-        echo "Form submitted successfully.";
-        var_dump($_POST);
+$authen = new Account($db);
+$authen->processRegistration();
 
-    }
+if(isset($_POST["valider"])) {
+                    
+                    echo "Form submitted successfully.";
+                    var_dump($_POST); 
+                    
+                }
 
-?>
+                

@@ -1,15 +1,6 @@
 <?php
- 
- require '../../../Controller/getAccount.php';
+require '../../../Controller/auth.php';
 
- 
- 
- // $authen = new Authentification($db);
- // $authen->processLogin();
- 
- 
- // // pr récupérer les msg d'erreur de la classe Authentification
- // $errorMessage = isset($authen) ? $authen->getErrorMessage() : '';
  
 ?>
 
@@ -37,7 +28,7 @@
                 <!-- Formulaire de connexion -->
             
         <form class="flex flex-col justify-center items-center" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-            <img src="..\..\src\img\avatar.svg" class="w-32" />
+            <img src="../../src/img/avatar.svg" class="w-32" />
             <h2 class="my-8 font-display font-bold text-3xl text-gray-700 text-center">Welcome to Cogip</h2>
     <div class="relative">
         <i class="fa fa-user absolute text-yellow-400 text-xl"></i>
