@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<?php require('../Controller/Getdashboard.php'); ?>
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,11 +9,9 @@
 
 <body>
 
-<!-- factures -->
 
-<?php
-    $invoices = (new Invoices($db))->getInvoicesDashboard();
-    ?>
+
+    <!-- Invoices -->
     <div>
         <h2>Last invoices</h2>
         <table border='1'>
@@ -23,42 +19,42 @@
                 <th>Invoice number</th>
                 <th>Date</th>
                 <th>Company</th>
-                <th>Action</th>
+                <th>Delete</th>
+                <th>Update</th>
+                <th>Save</th>
             </tr>
+
             <?php foreach ($invoices as $row) : ?>
-                <tr class="edit-mode" id="invoice_<?php echo $row['id']; ?>">
+                <tr>
+                    <td><a href='edit_invoices.php?ref=<?php echo $row['ref']; ?>'><?php echo $row['ref']; ?></a></td>
+
                     <td>
-                        <a href="#" onclick="toggleEdit('invoice_<?php echo $row['id']; ?>', 'ref', <?php echo $row['id']; ?>)">
-                            <span class="editable" data-field="ref"><?php echo $row['ref']; ?></span>
-                        </a>
+                        <span class="editable" data-field="created_at" data-id="<?php echo $row['id']; ?>"><?php echo $row['created_date']; ?></span>
                     </td>
                     <td>
-                        <a href="#" onclick="toggleEdit('invoice_<?php echo $row['id']; ?>', 'created_date', <?php echo $row['id']; ?>)">
-                            <span class="editable" data-field="created_date"><?php echo $row['created_date']; ?></span>
-                        </a>
+                        <span class="editable" data-field="company_name" data-id="<?php echo $row['id']; ?>"><?php echo $row['company_name']; ?></span>
                     </td>
+
                     <td>
-                        <a href="#" onclick="toggleEdit('invoice_<?php echo $row['id']; ?>', 'company_name', <?php echo $row['id']; ?>)">
-                            <span class="editable" data-field="company_name"><?php echo $row['company_name']; ?></span>
-                        </a>
-                    </td>
-                    <td>
-                        <form method="POST" action="dashboard.php">
-                            <input type="hidden" name="delete_invoice" value="<?php echo $row['id']; ?>">
-                            <button type="submit" name="delete_button">Delete</button>
+                        <form method="POST" action="index.php">
+                            <input type="hidden" name="delete_invoices" value="<?php echo $row['id']; ?>">
+                            <button type="submit" name="delete_button_invoices">Delete</button>
                         </form>
+
+                    </td>
+
+                    <td>
+                        <button class="updateButton" onclick="enableEditing(this, '<?php echo $row['id']; ?>')">Update</button>
+                    </td>
+
+                    <td>
+                        <button class="saveButton" onclick="saveChanges(this)" style="display:none;" data-id="<?php echo $row['id']; ?>">Save</button>
                     </td>
                 </tr>
             <?php endforeach; ?>
         </table>
     </div>
 
-    <!-- company -->
-<?php
-    $company = (new Company($db))->getCompanyDashboard();
-    if (isset($_POST['delete_company'])) {
-        $deleteCompany = (new Company($db))->deleteFunction('companies', $_POST['delete_company']);
-    } ?>
     <div>
         <h2>Last companies</h2>
         <table border='1'>
@@ -74,22 +70,20 @@
                     <td><?php echo $row['tva']; ?></td>
                     <td><?php echo $row['country']; ?></a></td>
                     <td>
-                        <form method="POST" action="dashboard.php">
+                        <form method="POST" action="index.php">
                             <input type="hidden" name="delete_company" value="<?php echo $row['id']; ?>">
-                            <button type="submit" name="delete_button">Delete</button>
+                            <button type="submit" name="delete_button_company">Delete</button>
                         </form>
+
+                    </td>
+                    <td>
+                        <button class="updateButton" onclick="update(this, <?php echo $row['id']; ?>)" value="<?php echo $row['id']; ?>">Update</button>
                     </td>
                 </tr>
             <?php endforeach; ?>
         </table>
     </div>
 
-    <!-- contact -->
-<?php
-    $contact = (new Contact($db))->getContactDashboard();
-    if (isset($_POST['delete_contact'])) {
-        $deleteContact = (new Contact($db))->deleteFunction('contacts', $_POST['delete_contact']);
-    } ?>
     <div>
         <h2>Last contacts</h2>
         <table border='1'>
@@ -105,18 +99,19 @@
                     <td><?php echo $row['phone']; ?></td>
                     <td><?php echo $row['email']; ?></a></td>
                     <td>
-                        <form method="POST" action="dashboard.php">
+                        <form method="POST" action="index.php">
                             <input type="hidden" name="delete_contact" value="<?php echo $row['id']; ?>">
-                            <button type="submit" name="delete_button">Delete</button>
+                            <button type="submit" name="delete_button_contact">Delete</button>
                         </form>
+
+                    </td>
+                    <td>
+                        <button class="updateButton" onclick="update(this, <?php echo $row['id']; ?>)" value="<?php echo $row['id']; ?>">Update</button>
                     </td>
                 </tr>
             <?php endforeach; ?>
         </table>
     </div>
-    
 </body>
-
-
 
 </html>

@@ -1,3 +1,7 @@
+<?php 
+     require_once '../../../Controller/create.php';?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,24 +13,6 @@
 
 <body>
 
-    <?php
-
-    require_once '../Controller/Getdashboard.php';
-
-    if (isset($_POST['save_invoice'])) {
-        $ref = $_POST['ref'];
-        $price = $_POST['price'];
-        $name = $_POST['company_name'];
-
-        $invoices = new Invoices($db);
-
-        if ($invoices->createInvoice($ref, $price, $name)) {
-            echo "Facture ajoutée avec succès.";
-        } else {
-            echo "Erreur lors de l'ajout de la facture.";
-        }
-    }
-    ?>
 
 <form action="" method="post">
     <input placeholder="Reference" type="text" id="ref" name="ref" required><br><br>
